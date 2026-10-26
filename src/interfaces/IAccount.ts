@@ -9,5 +9,6 @@ export interface IAccount {
   getTransactions(): ITransaction[];
   getSummary(): ISummary;
   getSummaryString(): string;
+  exportTransactionsToCSV(filename: string): Promise<void>;
   toString(): string;
 }

@@ -1,8 +1,10 @@
+import { writeFile } from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 import { formatCurrency } from 'formatCurrency';
 import { IAccount } from '../interfaces/IAccount';
 import { ISummary } from '../interfaces/ISummary';
 import { AccountUpdate } from '../interfaces/utility-types';
+import { escapeCsvValue } from '../utils/escapeCsvValue';
 import { Transaction } from './Transaction';
 
 export class Account implements IAccount, ISummary {
@@ -64,6 +66,38 @@ export class Account implements IAccount, ISummary {
 
   public getSummaryString(): string {
     return `Счёт "${this.name}" (ID: ${this.id.slice(0, 8)}) | Баланс: ${formatCurrency(this.balance)} (Доходы: ${formatCurrency(this.income)}, Расходы: ${formatCurrency(this.expenses)}) | Транзакций: ${this.transactions.length}`;
+  }
+
+  public async exportTransactionsToCSV(filename: string): Promise<void> {
+    if (!filename || !filename.trim()) {
+      throw new Error('Имя файла для экспорта не может быть пустым.');
+    }
+
+    const normalizedName = filename.trim().endsWith('.csv')
+      ? filename.trim()
+      : `${filename.trim()}.csv`;
+
+    const header = 'id,amount,type,date,description';
+    const rows = this.transactions.map((t) =>
+      [
+        escapeCsvValue(t.id),
+        escapeCsvValue(t.amount),
+        escapeCsvValue(t.type),
+        escapeCsvValue(t.date),
+        escapeCsvValue(t.description),
+      ].join(',')
+    );
+
+    const csvContent = [header, ...rows].join('\n');
+
+    try {
+      await writeFile(normalizedName, csvContent, 'utf-8');
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      throw new Error(
+        `Не удалось экспортировать транзакции в файл "${normalizedName}": ${msg}`
+      );
+    }
   }
 
   public toString(): string {

@@ -3,3 +3,5 @@ package-lock.json
 dist
 docs
 .DS_Store
+*.csv
+exports
