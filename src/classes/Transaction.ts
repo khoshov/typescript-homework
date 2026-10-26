@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { formatCurrency } from 'formatCurrency';
 import { ITransaction } from '../interfaces/ITransaction';
 import { TransactionType } from '../interfaces/TransactionType';
+import { TransactionUpdate } from '../interfaces/utility-types';
 
 export class Transaction implements ITransaction {
   public readonly id: string;
@@ -22,6 +23,21 @@ export class Transaction implements ITransaction {
     this.type = type;
     this.date = date;
     this.description = description;
+  }
+
+  public update(update: TransactionUpdate): void {
+    if (update.amount !== undefined) {
+      this.amount = update.amount;
+    }
+    if (update.type !== undefined) {
+      this.type = update.type;
+    }
+    if (update.date !== undefined) {
+      this.date = update.date;
+    }
+    if (update.description !== undefined) {
+      this.description = update.description;
+    }
   }
 
   public toString(): string {

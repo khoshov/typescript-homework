@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { formatCurrency } from 'formatCurrency';
 import { IAccount } from '../interfaces/IAccount';
 import { ISummary } from '../interfaces/ISummary';
+import { AccountUpdate } from '../interfaces/utility-types';
 import { Transaction } from './Transaction';
 
 export class Account implements IAccount, ISummary {
@@ -28,6 +29,12 @@ export class Account implements IAccount, ISummary {
 
   public get balance(): number {
     return this.income - this.expenses;
+  }
+
+  public update(update: AccountUpdate): void {
+    if (update.name !== undefined) {
+      this.name = update.name;
+    }
   }
 
   public addTransaction(transaction: Transaction): void {
