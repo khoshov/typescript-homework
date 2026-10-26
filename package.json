@@ -1,27 +1,35 @@
 {
   "name": "budget-tracker-cli",
   "version": "1.0.0",
-  "description": "Консольное приложение для управления личными финансами (Budget Tracker CLI)",
-  "type": "module",
+  "description": "Интерактивный CLI-контроллер для управления бюджетными счетами и транзакциями на TypeScript (Итоговое ДЗ)",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
     "start": "npx tsx src/index.ts",
-    "dev": "tsc --watch"
+    "dev": "npx tsx src/index.ts",
+    "build": "tsc",
+    "start:prod": "tsc && node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "npx tsx src/tests/verify.ts"
   },
   "keywords": [
     "typescript",
+    "cli",
+    "inquirer",
+    "finance",
     "budget",
-    "cli"
+    "oop"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
     "moment": "^2.30.1",
     "reflect-metadata": "^0.2.2",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "@types/inquirer": "^8.2.10",
     "@types/node": "^22.0.0",
     "@types/uuid": "^10.0.0",
     "tsx": "^4.19.2",

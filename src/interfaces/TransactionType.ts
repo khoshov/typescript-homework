@@ -1,1 +1,5 @@
-export type TransactionType = 'income' | 'expense';
+export {
+  TransactionType,
+  TRANSACTION_TYPE_LABELS,
+  DEFAULT_CATEGORIES,
+} from '../types/TransactionType';

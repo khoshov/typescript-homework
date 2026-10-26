@@ -1,0 +1,92 @@
+[
+  {
+    "id": "acc-main-01",
+    "name": "Основная карта (Т-Банк)",
+    "transactions": [
+      {
+        "id": "tx-demo-101",
+        "amount": 145000,
+        "type": "income",
+        "date": "2026-10-05",
+        "description": "Зарплата за первую половину месяца и премия",
+        "category": "Зарплата"
+      },
+      {
+        "id": "tx-demo-102",
+        "amount": 8450.5,
+        "type": "expense",
+        "date": "2026-10-07",
+        "description": "Закупка продуктов на неделю в ВкусВилл",
+        "category": "Продукты и супермаркеты"
+      },
+      {
+        "id": "tx-demo-103",
+        "amount": 42000,
+        "type": "expense",
+        "date": "2026-10-10",
+        "description": "Оплата аренды квартиры и коммунальных услуг",
+        "category": "Жильё и ЖКХ"
+      },
+      {
+        "id": "tx-demo-104",
+        "amount": 25000,
+        "type": "income",
+        "date": "2026-10-14",
+        "description": "Разработка веб-компонента на TypeScript",
+        "category": "Фриланс / Подработка"
+      },
+      {
+        "id": "tx-demo-105",
+        "amount": 3200,
+        "type": "expense",
+        "date": "2026-10-16",
+        "description": "Ужин с друзьями в пиццерии",
+        "category": "Кафе и рестораны"
+      }
+    ]
+  },
+  {
+    "id": "acc-save-02",
+    "name": "Накопительный счёт",
+    "transactions": [
+      {
+        "id": "tx-demo-201",
+        "amount": 250000,
+        "type": "income",
+        "date": "2026-09-01",
+        "description": "Пополнение финансовой подушки безопасности",
+        "category": "Инвестиции и вклады"
+      },
+      {
+        "id": "tx-demo-202",
+        "amount": 3750,
+        "type": "income",
+        "date": "2026-10-01",
+        "description": "Начисление процентов на остаток по счёту",
+        "category": "Инвестиции и вклады"
+      }
+    ]
+  },
+  {
+    "id": "acc-trvl-03",
+    "name": "Бюджет на отпуск",
+    "transactions": [
+      {
+        "id": "tx-demo-301",
+        "amount": 90000,
+        "type": "income",
+        "date": "2026-10-02",
+        "description": "Перевод средств на предстоящую поездку",
+        "category": "Подарки и переводы"
+      },
+      {
+        "id": "tx-demo-302",
+        "amount": 34800,
+        "type": "expense",
+        "date": "2026-10-12",
+        "description": "Покупка авиабилетов туда-обратно",
+        "category": "Транспорт и такси"
+      }
+    ]
+  }
+]
