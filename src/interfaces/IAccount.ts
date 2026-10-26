@@ -1,15 +1,13 @@
-/// <reference path="./ITransaction.ts" />
-/// <reference path="./ISummary.ts" />
+import { ISummary } from './ISummary';
+import { ITransaction } from './ITransaction';
 
-namespace BudgetTracker {
-  export interface IAccount {
-    id: number;
-    name: string;
-    addTransaction(transaction: ITransaction): void;
-    removeTransactionById(transactionId: number): boolean;
-    getTransactions(): ITransaction[];
-    getSummary(): ISummary;
-    getSummaryString(): string;
-    toString(): string;
-  }
+export interface IAccount {
+  readonly id: string;
+  name: string;
+  addTransaction(transaction: ITransaction): void;
+  removeTransactionById(transactionId: string): boolean;
+  getTransactions(): ITransaction[];
+  getSummary(): ISummary;
+  getSummaryString(): string;
+  toString(): string;
 }

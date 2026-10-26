@@ -1,7 +1,5 @@
-namespace BudgetTracker {
-  export interface ISummary {
-    income: number;
-    expenses: number;
-    balance: number;
-  }
+export interface ISummary {
+  income: number;
+  expenses: number;
+  balance: number;
 }
