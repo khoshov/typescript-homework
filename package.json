@@ -2,10 +2,10 @@
   "name": "budget-tracker-cli",
   "version": "1.0.0",
   "description": "Консольное приложение для управления личными финансами (Budget Tracker CLI)",
-  "main": "dist/index.js",
+  "main": "dist/budget-tracker.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/budget-tracker.js",
     "dev": "tsc --watch"
   },
   "keywords": [

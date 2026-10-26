@@ -1,14 +1,28 @@
-import { Account, AccountManager, Transaction } from './classes';
+/// <reference path="./classes/Transaction.ts" />
+/// <reference path="./classes/Account.ts" />
+/// <reference path="./classes/AccountManager.ts" />
 
-const personalAccount = new Account(1, 'Личный бюджет');
+const personalAccount = new BudgetTracker.Account(1, 'Личный бюджет');
 personalAccount.addTransaction(
-  new Transaction(1, 1000, 'income', '2023-01-01T00:00:00Z', 'Зарплата')
+  new BudgetTracker.Transaction(
+    1,
+    1000,
+    'income',
+    '2023-01-01T00:00:00Z',
+    'Зарплата'
+  )
 );
 personalAccount.addTransaction(
-  new Transaction(2, 200, 'expense', '2023-01-05T00:00:00Z', 'Продукты')
+  new BudgetTracker.Transaction(
+    2,
+    200,
+    'expense',
+    '2023-01-05T00:00:00Z',
+    'Продукты'
+  )
 );
 personalAccount.addTransaction(
-  new Transaction(
+  new BudgetTracker.Transaction(
     3,
     150,
     'expense',
@@ -17,7 +31,7 @@ personalAccount.addTransaction(
   )
 );
 
-const manager = new AccountManager();
+const manager = new BudgetTracker.AccountManager();
 manager.addAccount(personalAccount);
 
 console.log(String(personalAccount));
