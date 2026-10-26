@@ -1,15 +1,25 @@
+import 'reflect-metadata';
 import { writeFile } from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 import { formatCurrency } from 'formatCurrency';
+import { LogClass } from '../decorators/LogClass';
+import { LogMethod } from '../decorators/LogMethod';
+import { Metadata } from '../decorators/Metadata';
+import { ReadOnly } from '../decorators/ReadOnly';
 import { IAccount } from '../interfaces/IAccount';
 import { ISummary } from '../interfaces/ISummary';
 import { AccountUpdate } from '../interfaces/utility-types';
 import { escapeCsvValue } from '../utils/escapeCsvValue';
 import { Transaction } from './Transaction';
 
+@LogClass
 export class Account implements IAccount, ISummary {
-  public readonly id: string;
+  @ReadOnly
+  public id: string;
+
   public name: string;
+
+  @Metadata('description', 'Массив транзакций счета')
   public transactions: Transaction[] = [];
 
   constructor(name: string) {
@@ -39,10 +49,12 @@ export class Account implements IAccount, ISummary {
     }
   }
 
+  @LogMethod
   public addTransaction(transaction: Transaction): void {
     this.transactions.push(transaction);
   }
 
+  @LogMethod
   public removeTransactionById(transactionId: string): boolean {
     const index = this.transactions.findIndex((t) => t.id === transactionId);
     if (index === -1) {
@@ -52,6 +64,7 @@ export class Account implements IAccount, ISummary {
     return true;
   }
 
+  @LogMethod
   public getTransactions(): Transaction[] {
     return [...this.transactions];
   }
@@ -65,7 +78,15 @@ export class Account implements IAccount, ISummary {
   }
 
   public getSummaryString(): string {
-    return `Счёт "${this.name}" (ID: ${this.id.slice(0, 8)}) | Баланс: ${formatCurrency(this.balance)} (Доходы: ${formatCurrency(this.income)}, Расходы: ${formatCurrency(this.expenses)}) | Транзакций: ${this.transactions.length}`;
+    const transactionsMetadata = Reflect.getMetadata(
+      'description',
+      this,
+      'transactions'
+    );
+    const metaSuffix = transactionsMetadata
+      ? ` | Метаданные transactions: "${String(transactionsMetadata)}"`
+      : '';
+    return `Счёт "${this.name}" (ID: ${this.id.slice(0, 8)}) | Баланс: ${formatCurrency(this.balance)} (Доходы: ${formatCurrency(this.income)}, Расходы: ${formatCurrency(this.expenses)}) | Транзакций: ${this.transactions.length}${metaSuffix}`;
   }
 
   public async exportTransactionsToCSV(filename: string): Promise<void> {

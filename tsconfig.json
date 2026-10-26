@@ -10,6 +10,8 @@
       "formatCurrency": ["./src/lib/formatCurrency.js"],
       "budget-utils": ["./src/lib/budget-utils.js"]
     },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowJs": true,
     "strict": true,
     "esModuleInterop": true,
