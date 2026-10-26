@@ -6,14 +6,7 @@ export interface ITransaction {
   type: TransactionType;
   date: string;
   description: string;
-}
-
-export interface IAccount {
-  id: number;
-  name: string;
-  addTransaction(transaction: ITransaction): void;
-  removeTransactionById(transactionId: number): boolean;
-  getTransactions(): ITransaction[];
+  toString(): string;
 }
 
 export interface ISummary {
@@ -22,10 +15,24 @@ export interface ISummary {
   balance: number;
 }
 
+export interface IAccount {
+  id: number;
+  name: string;
+  addTransaction(transaction: ITransaction): void;
+  removeTransactionById(transactionId: number): boolean;
+  getTransactions(): ITransaction[];
+  getSummary(): ISummary;
+  getSummaryString(): string;
+  toString(): string;
+}
+
 export interface IAccountManager {
   addAccount(account: IAccount): void;
   removeAccountById(accountId: number): boolean;
   getAccounts(): IAccount[];
+  getAllAccounts(): IAccount[];
   getAccountById(id: number): IAccount | undefined;
-  getSummary(accountId: number): ISummary;
+  getSummary(accountId?: number): ISummary;
+  getSummaryString(): string;
+  toString(): string;
 }
